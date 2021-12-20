@@ -19,6 +19,9 @@ public class Guia extends Entity<IdGuia> {
     }
 
     public void modificarCapacidadClientes(int capacidadClientes){
+        if (String.valueOf(capacidadClientes) == null){
+            new IllegalArgumentException("La capacidad de clientes no puede ser nula");
+        }
         if (capacidadClientes <= 0){
             new IllegalArgumentException("La capacidad de clientes del guia debe ser mayor de 0");
         }
