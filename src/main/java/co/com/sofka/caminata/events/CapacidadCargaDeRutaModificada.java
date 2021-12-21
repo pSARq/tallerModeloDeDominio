@@ -1,4 +1,17 @@
 package co.com.sofka.caminata.events;
 
-public class CapacidadCargaDeRutaModificada {
+import co.com.sofka.domain.generic.DomainEvent;
+
+public class CapacidadCargaDeRutaModificada extends DomainEvent {
+
+    private final int capacidadCarga;
+
+    public CapacidadCargaDeRutaModificada(int capacidadCarga) {
+        super("sofka.caminata.capacidadrutamodificada");
+        this.capacidadCarga = capacidadCarga;
+    }
+
+    public int getCapacidadCarga() {
+        return capacidadCarga;
+    }
 }

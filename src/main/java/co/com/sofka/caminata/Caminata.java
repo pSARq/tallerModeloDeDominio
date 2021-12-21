@@ -24,6 +24,11 @@ public class Caminata extends AggregateEvent<IdCaminata> {
         appendChange(new CaminataCreada(refrigerio, regaloSorpresa, idRuta, horaLlegada, puntoEncuentro)).apply();
     }
 
+    public Caminata(IdCaminata entityId){
+        super(entityId);
+        subscribe(new CaminataChange(this));
+    }
+
     public void modificarRefrigerio(Refrigerio refrigerio){
         Objects.requireNonNull(refrigerio);
         appendChange(new RefrigerioModificado(refrigerio)).apply();
@@ -49,14 +54,13 @@ public class Caminata extends AggregateEvent<IdCaminata> {
         appendChange(new DuracionRutaModificada(duracionRuta)).apply();
     }
 
-    public void modificarDistanciaRuta(int distanciaRuta){
-        Objects.requireNonNull(distanciaRuta);
-        appendChange(new DistanciaRutaModificada(distanciaRuta)).apply();
+    public void modificarDistanciaRuta(int distanciaTotal){
+        Objects.requireNonNull(distanciaTotal);
+        appendChange(new DistanciaRutaModificada(distanciaTotal)).apply();
     }
 
     public void modificarCapacidadCargaDeRuta(int capacidadCarga){
         Objects.requireNonNull(capacidadCarga);
-        Objects.requireNonNull();
         appendChange(new CapacidadCargaDeRutaModificada(capacidadCarga)).apply();
     }
 
