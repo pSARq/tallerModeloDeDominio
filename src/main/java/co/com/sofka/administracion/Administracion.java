@@ -34,7 +34,7 @@ public class Administracion extends AggregateEvent<IdAdministracion> {
     }
 
     public static Administracion from(IdAdministracion idAdministracion, List<DomainEvent> events){
-        var administracion = new Administracion(idAdministracion);
+        Administracion administracion = new Administracion(idAdministracion);
         events.forEach(administracion::applyEvent);
         return administracion;
     }

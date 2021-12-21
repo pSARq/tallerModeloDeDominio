@@ -6,27 +6,33 @@ import co.com.sofka.caminata.values.IdRuta;
 import co.com.sofka.caminata.values.Refrigerio;
 import co.com.sofka.caminata.values.RegaloSorpresa;
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Caminata extends AggregateEvent<IdCaminata> {
 
-    private IdCaminata idCaminata;
-    private Refrigerio refrigerio;
-    private RegaloSorpresa regaloSorpresa;
-    private Set<IdRuta> idRutas;
-    private int horaLlegada;
-    private String puntoEncuentro;
+    protected Refrigerio refrigerio;
+    protected RegaloSorpresa regaloSorpresa;
+    protected Ruta ruta;
+    protected int horaLlegada;
+    protected String puntoEncuentro;
 
-    public Caminata(IdCaminata entityId, Refrigerio refrigerio, RegaloSorpresa regaloSorpresa, IdRuta idRuta, int horaLlegada, String puntoEncuentro){
+    public Caminata(IdCaminata entityId, Refrigerio refrigerio, RegaloSorpresa regaloSorpresa, Ruta ruta, int horaLlegada, String puntoEncuentro){
         super(entityId);
-        appendChange(new CaminataCreada(refrigerio, regaloSorpresa, idRuta, horaLlegada, puntoEncuentro)).apply();
+        appendChange(new CaminataCreada(refrigerio, regaloSorpresa, ruta, horaLlegada, puntoEncuentro)).apply();
     }
 
-    public Caminata(IdCaminata entityId){
+    private Caminata(IdCaminata entityId){
         super(entityId);
         subscribe(new CaminataChange(this));
+    }
+
+    public static Caminata from(IdCaminata idCaminata, List<DomainEvent> events){
+        Caminata caminata = new Caminata(idCaminata);
+        events.forEach(caminata::applyEvent);
+        return caminata;
     }
 
     public void modificarRefrigerio(Refrigerio refrigerio){
@@ -69,16 +75,16 @@ public class Caminata extends AggregateEvent<IdCaminata> {
         appendChange(new DificultadRutaModificada(dificultad));
     }
 
-    public IdCaminata idCaminata() {
-        return idCaminata;
-    }
-
     public Refrigerio refrigerio() {
         return refrigerio;
     }
 
     public RegaloSorpresa regaloSorpresa() {
         return regaloSorpresa;
+    }
+
+    public Ruta ruta() {
+        return ruta;
     }
 
     public int horaLlegada() {

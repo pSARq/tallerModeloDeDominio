@@ -4,6 +4,7 @@ import co.com.sofka.administracion.events.*;
 import co.com.sofka.administracion.values.PersonalCaminata;
 import co.com.sofka.domain.generic.EventChange;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 public class AdministracionChange extends EventChange {
@@ -13,6 +14,7 @@ public class AdministracionChange extends EventChange {
         apply((AdministracionCreada event) ->{
             administracion.nombre = event.getNombre();
             administracion.idGerenteRedesSociales = event.getIdGerenteRedesSociales();
+            administracion.guias = new HashSet<>();
         });
 
         apply((GuiasSeleccionados event) ->{

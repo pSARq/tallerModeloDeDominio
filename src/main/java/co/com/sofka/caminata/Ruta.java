@@ -70,7 +70,7 @@ public class Ruta extends Entity<IdRuta> {
         this.distanciaTotal = Objects.requireNonNull(validarDistancia(distanciaTotal));
     }
 
-    public void mopdificarCapacidadCarga(int capacidadCarga){
+    public void modificarCapacidadCarga(int capacidadCarga){
         this.capacidadCarga = Objects.requireNonNull(validarCapacidadCarga(capacidadCarga));
     }
 
