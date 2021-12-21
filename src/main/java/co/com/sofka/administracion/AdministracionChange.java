@@ -32,7 +32,7 @@ public class AdministracionChange extends EventChange {
         });
 
         apply((AsignadoPersonalCaminata event) ->{
-            administracion.personalCaminata = new PersonalCaminata(event.getIdCaminata(), event.getIdCliente(), event.getGuias(), event.getActividadRecreativa());
+            administracion.personalCaminata = new PersonalCaminata(event.getIdCaminata(), event.getClientes(), event.getGuias(), event.getActividadRecreativa());
         });
 
         apply((AsignadoBinocularAGuia event)->{

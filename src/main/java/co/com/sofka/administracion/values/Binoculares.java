@@ -4,7 +4,7 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Binoculares implements ValueObject<Integer> {
+public class Binoculares implements ValueObject<Binoculares.Properties> {
 
     private final int alcanceVision;
     private final int tamanoCm;
@@ -14,25 +14,38 @@ public class Binoculares implements ValueObject<Integer> {
         this.alcanceVision = Objects.requireNonNull(alcanceVision);
         this.tamanoCm = Objects.requireNonNull(tamanoCm);
         this.pesoKg = Objects.requireNonNull(pesoKg);
-        if (isValoresIgualOMenorDe0()){
+        if (isValoresIgualOMenorQue0()){
             throw new IllegalArgumentException("Las caracteristicas deben ser mayor a 0");
         }
     }
 
-    private boolean isValoresIgualOMenorDe0() {
+    private boolean isValoresIgualOMenorQue0() {
         return this.alcanceVision <= 0 || this.tamanoCm <= 0 || this.pesoKg <= 0;
     }
 
-    public int getAlcanceVision() {
-        return alcanceVision;
+    public interface Properties{
+        int alcanceVision();
+        int tamanoCm();
+        int pesoKg();
     }
 
-    public int getTamanoCm() {
-        return tamanoCm;
-    }
+    public Properties value(){
+        return new Properties() {
+            @Override
+            public int alcanceVision() {
+                return alcanceVision;
+            }
 
-    public int getPesoKg() {
-        return pesoKg;
+            @Override
+            public int tamanoCm() {
+                return tamanoCm;
+            }
+
+            @Override
+            public int pesoKg() {
+                return pesoKg;
+            }
+        };
     }
 
     @Override
@@ -46,10 +59,5 @@ public class Binoculares implements ValueObject<Integer> {
     @Override
     public int hashCode() {
         return Objects.hash(alcanceVision, tamanoCm, pesoKg);
-    }
-
-
-    public Integer value() {
-        return null;
     }
 }

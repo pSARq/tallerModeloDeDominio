@@ -1,10 +1,18 @@
 package co.com.sofka.gerenteRedesSociales.values;
 
-public class IdGerenteRedesSociales {
+import co.com.sofka.domain.generic.Identity;
 
-    private IdCliente idCliente;
+public class IdGerenteRedesSociales extends Identity {
 
-    public IdCliente idCliente() {
-        return idCliente;
+    public IdGerenteRedesSociales(){
+
+    }
+
+    public IdGerenteRedesSociales(String id){
+        super(id);
+    }
+
+    public IdGerenteRedesSociales of(String id){
+        return new IdGerenteRedesSociales(id);
     }
 }

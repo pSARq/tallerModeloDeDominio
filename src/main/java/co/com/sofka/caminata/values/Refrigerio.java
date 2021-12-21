@@ -4,7 +4,7 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Refrigerio implements ValueObject<String> {
+public class Refrigerio implements ValueObject<Refrigerio.Properties> {
     private final String nombreRefrigerio;
     private final String nombreBebida;
 
@@ -20,16 +20,25 @@ public class Refrigerio implements ValueObject<String> {
         }
     }
 
-    public String getNombreBebida() {
-        return nombreBebida;
+    public interface Properties {
+        String nombreRefrigerio();
+        String nombreBebida();
     }
 
-    public String getNombreRefrigerio() {
-        return nombreRefrigerio;
-    }
+    @Override
+    public Properties value(){
+        return new Properties(){
 
-    public String value(){
-        return null;
+            @Override
+            public String nombreRefrigerio() {
+                return nombreRefrigerio;
+            }
+
+            @Override
+            public String nombreBebida(){
+                return nombreBebida;
+            }
+        };
     }
 
     @Override
