@@ -1,25 +1,32 @@
-package co.com.sofka.caminata.events;
+package co.com.sofka.caminata.commands;
 
 import co.com.sofka.caminata.Ruta;
+import co.com.sofka.caminata.values.IdCaminata;
 import co.com.sofka.caminata.values.Refrigerio;
 import co.com.sofka.caminata.values.RegaloSorpresa;
-import co.com.sofka.domain.generic.DomainEvent;
+import co.com.sofka.domain.generic.Command;
 
-public class CaminataCreada extends DomainEvent {
+public class CrearCaminata extends Command {
+
+    private final IdCaminata entityId;
     private final Refrigerio refrigerio;
     private final RegaloSorpresa regaloSorpresa;
-    private Ruta ruta;
+    private final Ruta ruta;
     private final int horaLlegada;
     private final String puntoEncuentro;
 
+    public CrearCaminata(IdCaminata entityId, Refrigerio refrigerio, RegaloSorpresa regaloSorpresa, Ruta ruta, int horaLlegada, String puntoEncuentro){
 
-    public CaminataCreada(Refrigerio refrigerio, RegaloSorpresa regaloSorpresa, Ruta ruta, int horaLlegada, String puntoEncuentro) {
-        super("sofka.caminata.caminatacreada");
+        this.entityId = entityId;
         this.refrigerio = refrigerio;
         this.regaloSorpresa = regaloSorpresa;
         this.ruta = ruta;
         this.horaLlegada = horaLlegada;
         this.puntoEncuentro = puntoEncuentro;
+    }
+
+    public IdCaminata getEntityId() {
+        return entityId;
     }
 
     public Refrigerio getRefrigerio() {

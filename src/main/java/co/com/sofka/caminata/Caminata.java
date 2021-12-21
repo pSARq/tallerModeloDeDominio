@@ -2,7 +2,6 @@ package co.com.sofka.caminata;
 
 import co.com.sofka.caminata.events.*;
 import co.com.sofka.caminata.values.IdCaminata;
-import co.com.sofka.caminata.values.IdRuta;
 import co.com.sofka.caminata.values.Refrigerio;
 import co.com.sofka.caminata.values.RegaloSorpresa;
 import co.com.sofka.domain.generic.AggregateEvent;
