@@ -36,7 +36,8 @@ public class Cliente extends Entity<IdCliente> {
     }
 
     private void RegistrarInformacionFormulario(){
-        new Formulario(new IdFormulario(), );
+        Informacion informacion = new Informacion(this.nombreCompleto, this.email, this.numeroCelular, this.identificacion);
+        new Formulario(new IdFormulario(), informacion);
     }
 
 }
