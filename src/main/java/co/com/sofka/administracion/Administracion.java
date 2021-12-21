@@ -60,7 +60,7 @@ public class Administracion extends AggregateEvent<IdAdministracion> {
         appendChange(new ModificadaCapacidadClientesDelGuia(idGuia, capacidadClientes)).apply();
     }
 
-    public void asignarPersonalCaminata(IdCaminata idCaminata, Set<Guia> guias, ActividadRecreativa actividadRecreativa){
+        public void asignarPersonalCaminata(IdCaminata idCaminata, Set<Guia> guias, ActividadRecreativa actividadRecreativa){
         Objects.requireNonNull(idCaminata);
         Objects.requireNonNull(guias);
         Objects.requireNonNull(actividadRecreativa);
