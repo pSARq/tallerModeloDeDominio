@@ -1,12 +1,12 @@
 package co.com.sofka.gerenteRedesSociales;
 
-import co.com.sofka.administracion.Administracion;
 import co.com.sofka.domain.generic.AggregateEvent;
-import co.com.sofka.domain.generic.AggregateRoot;
 import co.com.sofka.domain.generic.DomainEvent;
-import co.com.sofka.gerenteRedesSociales.values.IdGerenteRedesSociales;
+import co.com.sofka.gerenteRedesSociales.events.*;
+import co.com.sofka.gerenteRedesSociales.values.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class GerenteRedesSociales extends AggregateEvent<IdGerenteRedesSociales> {
@@ -17,7 +17,7 @@ public class GerenteRedesSociales extends AggregateEvent<IdGerenteRedesSociales>
 
     public GerenteRedesSociales(IdGerenteRedesSociales entityId, String nombre){
         super(entityId);
-        appendChange(new GerenteRedesSocialesCreado(nombre));
+        appendChange(new GerenteRedesSocialesCreado(nombre)).apply();
     }
 
     private GerenteRedesSociales(IdGerenteRedesSociales entityId){
@@ -31,24 +31,27 @@ public class GerenteRedesSociales extends AggregateEvent<IdGerenteRedesSociales>
         return gerenteRedesSociales;
     }
 
-    public void registrarInformacionFormulario(){
-
+    public void registrarInformacionFormulario(Cliente cliente){
+        Objects.requireNonNull(cliente);
+        appendChange(new RegistradaInformacionFormulario(cliente)).apply();
     }
 
-    public void modificarInformacionFormulario(){
-
+    public void modificarInformacionFormulario(IdFormulario idFormulario, Informacion informacion){
+        Objects.requireNonNull(idFormulario);
+        Objects.requireNonNull(informacion);
+        appendChange(new ModificadaInformacionFormulario(idFormulario, informacion)).apply();
     }
 
-    public void consultarInformacionFormulario(){
-
+    public void modificarEmailCliente(IdCliente idCliente, Email email){
+        Objects.requireNonNull(idCliente);
+        Objects.requireNonNull(email);
+        appendChange(new ModificadoEmailCliente(idCliente, email)).apply();
     }
 
-    public void modificarEmailCliente(){
-
-    }
-
-    public void modificarNoCelularCliente(){
-
+    public void modificarNumeroCelularCliente(IdCliente idCliente, NumeroCelular numeroCelular){
+        Objects.requireNonNull(idCliente);
+        Objects.requireNonNull(numeroCelular);
+        appendChange(new ModificadoNumeroCelularCliente(idCliente, numeroCelular)).apply();;
     }
 
     public void setClientes(Set<Cliente> clientes) {

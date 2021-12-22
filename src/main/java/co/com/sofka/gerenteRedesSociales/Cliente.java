@@ -35,9 +35,19 @@ public class Cliente extends Entity<IdCliente> {
         this.numeroCelular = Objects.requireNonNull(numeroCelular);
     }
 
-    private void RegistrarInformacionFormulario(){
-        Informacion informacion = new Informacion(this.nombreCompleto, this.email, this.numeroCelular, this.identificacion);
-        new Formulario(new IdFormulario(), informacion);
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
+    public Email getEmail() {
+        return email;
+    }
+
+    public NumeroCelular getNumeroCelular() {
+        return numeroCelular;
+    }
+
+    public Identificacion getIdentificacion() {
+        return identificacion;
+    }
 }

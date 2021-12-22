@@ -18,7 +18,7 @@ public class Formulario extends Entity<IdFormulario> {
         this.informacion = Objects.requireNonNull(informacion);
     }
 
-    public Informacion consultarInformacion() {
+    public Informacion getInformacion() {
         return informacion;
     }
 }
