@@ -5,9 +5,6 @@ import co.com.sofka.administracion.values.*;
 import co.com.sofka.caminata.values.IdCaminata;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
-import co.com.sofka.gerenteRedesSociales.Cliente;
-import co.com.sofka.gerenteRedesSociales.GerenteRedesSociales;
-import co.com.sofka.gerenteRedesSociales.values.IdCliente;
 import co.com.sofka.gerenteRedesSociales.values.IdGerenteRedesSociales;
 
 import java.util.List;
