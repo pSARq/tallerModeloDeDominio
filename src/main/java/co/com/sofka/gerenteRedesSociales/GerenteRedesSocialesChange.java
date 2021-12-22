@@ -1,6 +1,5 @@
 package co.com.sofka.gerenteRedesSociales;
 
-import co.com.sofka.administracion.Guia;
 import co.com.sofka.domain.generic.EventChange;
 import co.com.sofka.gerenteRedesSociales.events.*;
 import co.com.sofka.gerenteRedesSociales.values.*;

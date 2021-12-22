@@ -6,20 +6,21 @@ import co.com.sofka.caminata.values.IdCaminata;
 import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.gerenteRedesSociales.Cliente;
 import co.com.sofka.gerenteRedesSociales.values.IdCliente;
+import co.com.sofka.gerenteRedesSociales.values.IdGerenteRedesSociales;
 
 import java.util.Set;
 
 public class AsignadoPersonalCaminata extends DomainEvent {
 
     private  final IdCaminata idCaminata;
-    private final Set<Cliente> clientes;
+    private final IdGerenteRedesSociales idGerenteRedesSociales;
     private final Set<Guia> guias;
     private final ActividadRecreativa actividadRecreativa;
 
-    public AsignadoPersonalCaminata(IdCaminata idCaminata, Set<Cliente> clientes, Set<Guia> guias, ActividadRecreativa actividadRecreativa) {
+    public AsignadoPersonalCaminata(IdCaminata idCaminata, IdGerenteRedesSociales idGerenteRedesSociales, Set<Guia> guias, ActividadRecreativa actividadRecreativa) {
         super("sofka.administracion.asignadopersonalcaminata");
         this.idCaminata = idCaminata;
-        this.clientes = clientes;
+        this.idGerenteRedesSociales = idGerenteRedesSociales;
         this.guias = guias;
         this.actividadRecreativa = actividadRecreativa;
     }
@@ -28,8 +29,8 @@ public class AsignadoPersonalCaminata extends DomainEvent {
         return idCaminata;
     }
 
-    public Set<Cliente> getClientes() {
-        return clientes;
+    public IdGerenteRedesSociales getIdGerenteRedesSociales() {
+        return idGerenteRedesSociales;
     }
 
     public Set<Guia> getGuias() {

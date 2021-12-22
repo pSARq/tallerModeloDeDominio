@@ -6,6 +6,7 @@ import co.com.sofka.caminata.values.IdCaminata;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.gerenteRedesSociales.Cliente;
+import co.com.sofka.gerenteRedesSociales.GerenteRedesSociales;
 import co.com.sofka.gerenteRedesSociales.values.IdCliente;
 import co.com.sofka.gerenteRedesSociales.values.IdGerenteRedesSociales;
 
@@ -65,9 +66,7 @@ public class Administracion extends AggregateEvent<IdAdministracion> {
         Objects.requireNonNull(idCaminata);
         Objects.requireNonNull(guias);
         Objects.requireNonNull(actividadRecreativa);
-        Set<Cliente> clientes = null;
-        clientes.add(new Cliente());
-        appendChange(new AsignadoPersonalCaminata(idCaminata, clientes, guias, actividadRecreativa));
+        appendChange(new AsignadoPersonalCaminata(idCaminata, idGerenteRedesSociales, guias, actividadRecreativa));
     }
 
     public void asignarBinocularesGuia(IdGuia idGuia, Binoculares binoculares){
