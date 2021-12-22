@@ -31,7 +31,7 @@ public class Cliente extends Entity<IdCliente> {
         this.email = Objects.requireNonNull(email);
     }
 
-    public void modificarNumeroCelular(){
+    public void modificarNumeroCelular(NumeroCelular numeroCelular){
         this.numeroCelular = Objects.requireNonNull(numeroCelular);
     }
 

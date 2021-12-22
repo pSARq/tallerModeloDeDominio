@@ -7,6 +7,7 @@ import co.com.sofka.gerenteRedesSociales.values.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class GerenteRedesSociales extends AggregateEvent<IdGerenteRedesSociales> {
@@ -31,9 +32,12 @@ public class GerenteRedesSociales extends AggregateEvent<IdGerenteRedesSociales>
         return gerenteRedesSociales;
     }
 
-    public void registrarInformacionFormulario(Cliente cliente){
-        Objects.requireNonNull(cliente);
-        appendChange(new RegistradaInformacionFormulario(cliente)).apply();
+    public void registrarInformacionFormulario(String nombreCompleto, Email email, NumeroCelular numeroCelular, Identificacion identificacion){
+        Objects.requireNonNull(nombreCompleto);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(numeroCelular);
+        Objects.requireNonNull(identificacion);
+        appendChange(new RegistradaInformacionFormulario(nombreCompleto, email, numeroCelular, identificacion)).apply();
     }
 
     public void modificarInformacionFormulario(IdFormulario idFormulario, Informacion informacion){
@@ -54,11 +58,25 @@ public class GerenteRedesSociales extends AggregateEvent<IdGerenteRedesSociales>
         appendChange(new ModificadoNumeroCelularCliente(idCliente, numeroCelular)).apply();;
     }
 
-    public void setClientes(Set<Cliente> clientes) {
-        this.clientes = clientes;
+    protected Optional<Cliente> getClientePorId(IdCliente idCliente){
+        return clientes().stream()
+                .filter(cliente -> cliente.identity().equals(idCliente)).findFirst();
     }
 
-    public void setFormularios(Set<Formulario> formularios) {
-        this.formularios = formularios;
+    protected Optional<Formulario> getFormularioPorId(IdFormulario idFormulario){
+        return formularios().stream()
+                .filter(formulario -> formulario.identity().equals(idFormulario)).findFirst();
+    }
+
+    public String nombre() {
+        return nombre;
+    }
+
+    public Set<Cliente> clientes() {
+        return clientes;
+    }
+
+    public Set<Formulario> formularios() {
+        return formularios;
     }
 }

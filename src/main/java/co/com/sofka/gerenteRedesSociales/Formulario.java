@@ -14,7 +14,7 @@ public class Formulario extends Entity<IdFormulario> {
         this.informacion = informacion;
     }
 
-    public void registrarInformacion(Informacion informacion){
+    public void  modificarInformacion(Informacion informacion){
         this.informacion = Objects.requireNonNull(informacion);
     }
 

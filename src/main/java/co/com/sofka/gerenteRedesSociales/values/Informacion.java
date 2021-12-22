@@ -2,6 +2,7 @@ package co.com.sofka.gerenteRedesSociales.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
+import javax.xml.validation.Validator;
 import java.util.Objects;
 
 public class Informacion implements ValueObject<Informacion.Properties> {
@@ -12,10 +13,17 @@ public class Informacion implements ValueObject<Informacion.Properties> {
     private final Identificacion identificacion;
 
     public Informacion(String nombreCompletoCliente, Email emailCliente, NumeroCelular numeroCelular, Identificacion identificacion) {
-        this.nombreCompletoCliente = Objects.requireNonNull(nombreCompletoCliente);
+        this.nombreCompletoCliente = Objects.requireNonNull(validarNombre(nombreCompletoCliente));
         this.emailCliente = Objects.requireNonNull(emailCliente);
         this.numeroCelular = Objects.requireNonNull(numeroCelular);
         this.identificacion = Objects.requireNonNull(identificacion);
+    }
+
+    private String validarNombre(String nombreCompletoCliente){
+        if (nombreCompletoCliente.isBlank()){
+            throw new IllegalArgumentException("El nombre completo no puede estar vacio");
+        }
+        return nombreCompletoCliente;
     }
 
     public interface Properties{
